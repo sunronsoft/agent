@@ -1,0 +1,84 @@
+{
+  "code": 0
+  ,"msg": ""
+  ,"count": 6
+  ,"data": [{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  },{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  },{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  },{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  },{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  },{
+    "state": "状态",
+    "userName": "张三",
+    "firstName": "三",
+    "lastName": "张",
+    "creditLimit": "信用额度",
+    "cash": "现金",
+    "yesterdayBalance": "昨天余额",
+    "avaliableCreditLimit": "可用信用额",
+    "notCompletedDeal": "未完成交易",
+    "memeberTotalDeal": "会员总投注交易",
+    "lastLoginTime": "最后登入",
+    "lastLoginIp": "最后登入IP"
+  }]
+}  

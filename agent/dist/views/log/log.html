@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>layout 后台大布局 - Layui</title>
+  <link rel="stylesheet" href="../css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <!--<div class="layui-logo">layui 后台布局</div>-->
+    <!-- 头部区域（可配合layui已有的水平导航）-->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          管理员
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">注销</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item">
+          <a class="" href="javascript:;">会员管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">会员明细</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">代理管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="proxyDetail.html">代理明细</a></dd>
+            <dd><a href="subAccount.html">子账号</a></dd>
+            <dd><a href="proxyCreditLimit.html">代理信用额度</a></dd>
+          </dl>
+        </li>
+		<li class="layui-nav-item">
+          <a href="javascript:;">代理报表</a>
+          <dl class="layui-nav-child">
+            <dd><a href="proxyLoseOrWin.html">代理输赢</a></dd>
+            <dd><a href="proxyLoseOrWinReport.html">输赢报告</a></dd>
+          </dl>
+        </li>
+		<li class="layui-nav-item">
+          <a href="javascript:;">会员报表</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">会员输赢</a></dd>
+            <dd><a href="javascript:;">输赢报告</a></dd>
+          </dl>
+        </li>
+		<li class="layui-nav-item layui-nav-itemed">
+          <a href="javascript:;">查看日志</a>
+          <dl class="layui-nav-child">
+            <dd><a href="log.html">设定</a></dd>
+            <dd><a href="log.html">状态</a></dd>
+			<dd><a href="log.html">信用额度</a></dd>
+            <dd><a href="log.html">登入</a></dd>
+          </dl>
+        </li>
+		<li class="layui-nav-item">
+          <a href="javascript:;">系统消息</a>
+          <dl class="layui-nav-child">
+            <dd><a href="message.html">一般消息</a></dd>
+            <dd><a href="message.html">特殊消息</a></dd>
+          </dl>
+        </li>
+		<!--
+        <li class="layui-nav-item"><a href="">云市场</a></li>
+        <li class="layui-nav-item"><a href="">发布商品</a></li>
+		-->
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-main">
+		
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+		  <ul class="layui-tab-title">
+			<li class="layui-this">设定</li>
+			<li>状态</li>
+			<li>信用额度</li>
+			<li>登入</li>
+		  </ul>
+		  <div class="layui-tab-content"></div>
+		</div>
+		<div class="layui-form">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width:5px;padding-left:0px;">从</label>
+					<div class="layui-input-inline" style="width:100px;">
+						<input type="text" class="layui-input" id="startTime">
+					</div>
+					<label class="layui-form-label" style="width:5px;padding-left:0px;">到</label>
+					<div class="layui-input-inline" style="width:100px;">
+						<input type="text" class="layui-input" id="endTime">
+					</div>
+					<div class="layui-input-inline" style="width:60px;">
+						<button class="layui-btn layui-btn-sm" lay-submit lay-filter="formDemo" style="margin-top:3px;">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<table class="layui-table" lay-data="{url:'log.json', page: true, limit: 5, limits:[5, 10, 15, 20]}">
+		  <thead>
+			<tr>
+			  <th lay-data="{field:'action', width: '50%'}">动作</th>
+			  <th lay-data="{field:'detail', width: '50%'}">详情</th>
+			</tr>
+		  </thead>
+		</table>
+
+		<!--
+		<table class="layui-table" lay-data="{url:'log.json', page: true, limit: 5, limits:[5, 10, 15, 20]}">
+		  <thead>
+			<tr>
+			  <th lay-data="{field:'action', width: '33%'}">动作</th>
+			  <th lay-data="{field:'detail', width: '33%'}">详情</th>
+			  <th lay-data="{field:'ip', width: '33%'}">IP</th>
+			</tr>
+		  </thead>
+		</table>
+
+		<table class="layui-table" lay-data="{url:'log.json', page: true, limit: 5, limits:[5, 10, 15, 20]}">
+		  <thead>
+			<tr>
+			  <th lay-data="{field:'action', width: '25%'}">动作</th>
+			  <th lay-data="{field:'detail', width: '25%'}">详情</th>
+			  <th lay-data="{field:'url', width: '25%'}">网址</th>
+			  <th lay-data="{field:'browser', width: '25%'}">浏览器</th>
+			  <th lay-data="{field:'country', width: '25%'}">IP/国家</th>
+			</tr>
+		  </thead>
+		</table>
+
+		-->
+	</div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 
+    © layui.com - 底部固定区域-->
+  </div>
+</div>
+<script src="../layui.js"></script>
+<script>
+	//JavaScript代码区域
+	layui.use('element', function(){
+	  var element = layui.element;
+	  
+	});
+
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行laydate实例
+	  laydate.render({
+		  elem: '#startTime' //指定元素
+	  });
+	  laydate.render({
+		  elem: '#endTime' //指定元素
+	  });
+	});
+
+	layui.use('table', function(){
+	  var table = layui.table;
+	  
+	});
+
+	
+</script>
+</body>
+</html>

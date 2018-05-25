@@ -1,0 +1,63 @@
+<title>查看日志</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="/">首页</a>
+        <a><cite>查看日志</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-tab layui-tab-brief" lay-filter="tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this" lay-id="setting">设定</li>
+                            <li lay-id="status">状态</li>
+                            <li lay-id="credit">信用额度</li>
+                            <li lay-id="login">登入</li>
+                        </ul>
+
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                设定
+                            </div>
+
+                            <div class="layui-tab-item">
+                                状态
+                            </div>
+
+                            <div class="layui-tab-item">
+                                信用额度
+                            </div>
+
+                            <div class="layui-tab-item">
+                                登入
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    layui.use(['element'], function() {
+        var $ = layui.$,
+            view = layui.view,
+            element = layui.element,
+            router = layui.router();
+
+        // 获取hash来切换选项卡，假设当前地址的hash为lay-id对应的值
+        var layid = router.hash.replace(/^#tab=/, '');
+        layid && element.tabChange('tab', layid);
+
+        // 监听Tab切换，以改变地址hash值
+        element.on('tab(tab)', function(elem){
+            location.hash = '/'+ router.path.join('/') + '#tab=' + $(this).attr('lay-id');
+        });
+    });
+</script>

@@ -1,0 +1,120 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <form class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label">货币</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" placeholder="帐号/登录名/备注" />
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">状态</label>
+                                <div class="layui-input-inline">
+                                    <select name="currency">
+                                        <option value="">全部</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <label class="layui-form-label">产品</label>
+                                <div class="layui-input-inline">
+                                    <select name="currency">
+                                        <option value="">全部</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-inline">
+                                <button class="layui-btn" lay-submit lay-filter="user-search-form">提 交</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <span class="layui-breadcrumb">
+                    	<a href="/">自己</a>
+                    	<a href="/demo/">演示</a>
+                    	<a><cite>导航元素</cite></a>
+                    </span>
+                    <table id="agents" lay-filter="agents"></table>
+
+                    <table id="subaccounts" lay-filter="subaccounts"></table>
+
+                    <table id="members" lay-filter="members"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	layui.use(['form', 'element', 'table', 'view'], function(){
+        var $ = layui.$,
+            form = layui.form,
+            //view = layui.view,
+            table = layui.table,
+            setter = layui.setter,
+            element = layui.element;
+        var userInfo = layui.sessionData(setter.tableName)[setter.request.userInfoName] || {};
+        form.render();
+        element.render('breadcrumb');
+
+        table.render({
+            elem: '#agents',
+            url: setter.request.apiUrl + 'user/list',
+            where: {user_id:userInfo.id, user_type:setter.userType.agent},
+            page: false,
+            cols: [[
+                {field: 'id', title: '选择', type: 'checkbox'},
+                {field: 'user_level', title: '级别'},
+                {field: 'account', title: '帐号'},
+                {field: 'nick_name', title: '登录名'},
+                {field: 'remark', title: '备注'},
+                {title: '功能'},
+                {title: '下线'},
+                {field: 'is_pause', title: '状态'},
+                {title: '风控金额'},
+                {title: '登入信息'}
+            ]]
+        });
+
+        table.render({
+            elem: '#subaccounts',
+            url: setter.request.apiUrl + 'user/list',
+            where: {master_id:userInfo.id, user_type:setter.userType.agent},
+            page: false,
+            cols: [[
+                {field: 'id', title: '选择', type: 'checkbox'},
+                {field: 'user_level', title: '类别'},
+                {field: 'account', title: '帐号'},
+                {field: 'nick_name', title: '登录名'},
+                {field: 'remark', title: '备注'},
+                {title: '功能'},
+                {field: 'is_pause', title: '状态'},
+                {title: '权限'},
+                {title: '登入信息'}
+            ]]
+        });
+
+        table.render({
+            elem: '#members',
+            url: setter.request.apiUrl + 'user/list',
+            where: {user_id:userInfo.id, user_type:setter.userType.member},
+            page: false,
+            cols: [[
+                {field: 'id', title: '选择', type: 'checkbox'},
+                {field: 'user_level', title: '级别'},
+                {field: 'account', title: '帐号'},
+                {field: 'nick_name', title: '登录名'},
+                {field: 'remark', title: '备注'},
+                {title: '功能'},
+                {title: '下线'},
+                {field: 'is_pause', title: '状态'},
+                {title: '风控金额'},
+                {title: '登入信息'}
+            ]]
+        });
+	});
+</script>

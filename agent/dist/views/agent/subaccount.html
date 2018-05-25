@@ -1,0 +1,121 @@
+<title>子账号</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>子账号</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid" id="LAY-agent-sub">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="margin-left: -15px; text-align: left;">子账号</label>
+                        <button id="addSubAccountBtn" class="layui-btn layui-btn-sm" style="margin-top: -5px;">新增子账号</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <table class="layui-table" lay-data="{url:'json/subAccount.json', page: true, limit: 5, limits:[5, 10, 15, 20]}">
+                <thead>
+                    <tr>
+                        <th lay-data="{checkbox:true, width: '5%'}"></th>
+                        <th lay-data="{field:'userName', width: '7%'}">用户名</th>
+                        <th lay-data="{field:'firstName', width: '5%'}">名</th>
+                        <th lay-data="{field:'lastName', width: '5%'}">姓</th>
+                        <th lay-data="{field:'addDate', width: '10%'}">新增日期</th>
+                        <th lay-data="{field:'memberInfo', width: '10%'}">会员资讯</th>
+                        <th lay-data="{field:'totalFeeAndPredict', width: '10%'}">总投注/预测</th>
+                        <th lay-data="{field:'report', width: '5%'}">报告</th>
+                        <th lay-data="{field:'transfer', width: '5%'}">转账</th>
+                        <th lay-data="{field:'log', width: '10%'}">察看日志</th>
+                        <th lay-data="{field:'update', width: '5%'}">修改</th>
+                        <th lay-data="{field:'password', width: '5%'}">密码</th>
+                        <th lay-data="{field:'securityCode', width: '8%'}">保安码</th>
+                        <th lay-data="{field:'delOpt', width: '10%'}">删除OTP</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use('element', function() {
+        var element = layui.element;
+
+    });
+
+    layui.use(['jquery', 'layer', 'form'], function() {
+        var $ = layui.$;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        $('#addSubAccountBtn').on('click', function() {
+
+            var formHtml = '<form class="layui-form"><div class="layui-form-item"><label class="layui-form-label">姓名</label><div class="layui-input-block">';
+            formHtml += '<input type="text" id="userName" name="userName" placeholder="请输入姓名" autocomplete="off" class="layui-input"></div></div>';
+            formHtml += '<div class="layui-form-item"><label class="layui-form-label">姓</label><div class="layui-input-block">';
+            formHtml += '<input type="text" id="lastName" name="lastName" placeholder="请输入姓" autocomplete="off" class="layui-input"></div></div>';
+            formHtml += '<div class="layui-form-item"><label class="layui-form-label">名</label><div class="layui-input-block">';
+            formHtml += '<input type="text" id="firstName" name="firstName" placeholder="请输入名" autocomplete="off" class="layui-input"></div></div>';
+            formHtml += '</form>';
+            /*
+            layer.open({
+              btnAlign: 'c',
+              btn: ['保存', '取消'],
+              content: formHtml,
+              yes: function(index, layero){
+            	//do something
+            	alert($('#userName').val());
+            	layer.close(index); //如果设定了yes回调，需进行手工关闭
+              },
+              cancel: function(index, layero){
+            	layer.close(index);
+              }
+            });
+            */
+
+            $.get('json/subAccount2.json', {}, function(data) {
+                layer.open({
+                    btnAlign: 'c',
+                    btn: ['保存', '取消'],
+                    content: formHtml,
+                    yes: function(index, layero) {
+                        //do something
+                        alert($('#userName').val());
+                        layer.close(index); //如果设定了yes回调，需进行手工关闭
+                    },
+                    cancel: function(index, layero) {
+                        layer.close(index);
+                    },
+                    success: function(layero, index) {
+                        $('#userName').val(data.userName);
+                    }
+                });
+            });
+        });
+    });
+
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //执行laydate实例
+        laydate.render({
+            elem: '#startTime' //指定元素
+        });
+        laydate.render({
+            elem: '#endTime' //指定元素
+        });
+    });
+
+    layui.use('table', function() {
+        var table = layui.table;
+
+    });
+</script>

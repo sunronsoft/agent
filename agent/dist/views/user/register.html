@@ -1,0 +1,384 @@
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-tab layui-tab-brief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">新增代理</li>
+                            <li>新增会员</li>
+                            <li>新增子帐</li>
+                        </ul>
+
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <form class="layui-form" lay-filter="addnew-agent-form">
+                                    <script type="text/html" template lay-type="post" lay-url="basic/getcurrency" lay-done="layui.form.render('select', 'addnew-agent-form');">
+                                        {{# var tableName = layui.setter.tableName, userInfoName = layui.setter.request.userInfoName, userInfo = layui.sessionData(tableName)[userInfoName], match = userInfo.user_level < 1 && userInfo.user_type == 1;if(match) { }}
+                                        <div class="layui-row layui-form-item" id="currency_container">
+                                            <div class="layui-col-sm6">
+                                                <label class="layui-form-label">货币</label>
+                                                <div class="layui-input-block">
+                                                    <select name="currency_code" lay-verify="required" lay-search lay-filter="currency">
+                                                        <option value="">直接选择或搜索选择</option>
+                                                        {{# var dataName = layui.setter.response.dataName; layui.each(d[dataName],function(index, item){var hasSelected = item.currency_code == userInfo.currency_code; }}
+                                                        <option value="{{ item.currency_code }}" {{# if(hasSelected){ }} selected="selected" {{# } }}>{{ item.currency_code + " " + item.currency_name }}</option>
+                                                        {{# }); }}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{# } }}
+                                    </script>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">级别</label>
+                                            <div class="layui-input-block">
+                                                <script type="text/html" template>
+                                                    <select name="user_level" lay-verify="required" lay-search lay-filter="user_level">
+                                                        <option value="">直接选择或搜索选择</option>
+                                                        {{# var tableName = layui.setter.tableName, userInfoName = layui.setter.request.userInfoName, userInfo = layui.sessionData(tableName)[userInfoName], userLevel = userInfo.user_level || 0, maxLevel = userInfo.max_level || 0; for(var i = userLevel; i < maxLevel; i++) { }}
+                                                        <option value="{{ i+1 }}" {{# if(userLevel == i){ }} selected="selected" {{# } }}>{{ i+1 }} 级</option>
+                                                        {{# } }}
+                                                    </select>
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">帐号</label>
+                                            <div class="layui-input-inline" style="width: 50px;">
+                                                <script type="text/html" template>
+                                                    <input name="first_name" type="text" class="layui-input" lay-verify="required" maxlength="3" placeholder="字头" value="{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}" />
+                                                    <div class="layui-form-mid layui-input layui-hide" name="first_name" style="text-align: center;">{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}</div>
+                                                </script>
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <input name="account" type="text" class="layui-input" lay-verify="required" />
+                                            </div>
+                                            <div class="layui-input-inline" style="width: auto;margin-right: 0;">
+                                                <button class="layui-btn layui-btn-primary" lay-filter="check">检验</button>
+                                                <button class="layui-btn layui-btn-primary" lay-filter="generator">生成</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-block">
+                                                <input name="password" type="password" class="layui-input" lay-verify="required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">微信</label>
+                                            <div class="layui-input-block">
+                                                <input name="wechat" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">备注</label>
+                                            <div class="layui-input-block">
+                                                <input name="remark" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">风控额度</label>
+                                            <div class="layui-input-inline">
+                                                <input name="max_win" type="number" class="layui-input" placeholder="最大可赢" />
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <input name="max_lose" type="number" class="layui-input" placeholder="最大可输" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">游戏</label>
+                                            <script type="text/html" template lay-type="post" lay-url="game/list" lay-done="layui.form.render('checkbox', 'addnew-agent-form');">
+                                            <div class="layui-input-block">
+                                                <input lay-filter="allAgent" type="checkbox" lay-skin="primary" title="全选" />
+                                                {{# var dataName = layui.setter.response.dataName; layui.each(d[dataName], function(index, item){ }}
+                                                <input name="gameAgent" value="{{ item.id }}" type="checkbox" lay-skin="primary" title="{{ item.game_name }}" />
+                                                {{# }); }}
+                                            </div>
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <input name="user_type" type="hidden" value="1" />
+                                            <input name="account_type" type="hidden" value="1" />
+                                            <button class="layui-btn" lay-submit lay-filter="addnew">提 交</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重 置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="layui-tab-item">
+                                <form class="layui-form" lay-filter="addnew-member-form">
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">帐号</label>
+                                            <div class="layui-input-inline" style="width: 50px;">
+                                                <script type="text/html" template>
+                                                    <input name="first_name" type="text" class="layui-input" lay-verify="required" maxlength="3" placeholder="字头" value="{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}" />
+                                                    <div class="layui-form-mid layui-input layui-hide" name="first_name" style="text-align: center;">{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}</div>
+                                                </script>
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <input name="account" type="text" class="layui-input" lay-verify="required" />
+                                            </div>
+                                            <div class="layui-input-inline" style="width: auto;margin-right: 0;">
+                                                <button class="layui-btn layui-btn-primary" lay-filter="check">检验</button>
+                                                <button class="layui-btn layui-btn-primary" lay-filter="generator">生成</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-block">
+                                                <input name="password" type="password" class="layui-input" lay-verify="required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">微信</label>
+                                            <div class="layui-input-block">
+                                                <input name="wechat" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">备注</label>
+                                            <div class="layui-input-block">
+                                                <input name="remark" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">手机</label>
+                                            <div class="layui-input-block">
+                                                <input name="phone" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">风控额度</label>
+                                            <div class="layui-input-inline">
+                                                <input name="max_win" type="number" class="layui-input" placeholder="最大可羸" />
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <input name="max_lose" type="number" class="layui-input" placeholder="最大可输" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">游戏</label>
+                                            <script type="text/html" template lay-type="post" lay-url="game/list" lay-done="layui.form.render('checkbox', 'addnew-member-form');">
+                                            <div class="layui-input-block">
+                                                <input lay-filter="allMember" type="checkbox" lay-skin="primary" title="全选" />
+                                                {{# var dataName = layui.setter.response.dataName; layui.each(d[dataName], function(index, item){ }}
+                                                <input name="gameMember" value="{{ item.id }}" type="checkbox" lay-skin="primary" title="{{ item.game_name }}" />
+                                                {{# }); }}
+                                            </div>
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <input name="user_type" type="hidden" value="0" />
+                                            <input name="account_type" type="hidden" value="0" />
+                                            <button class="layui-btn" lay-submit lay-filter="addnew">提 交</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重 置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="layui-tab-item">
+                                <form class="layui-form" lay-filter="addnew-sub-form">
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">类别</label>
+                                            <div class="layui-input-block">
+                                                <select name="sub_type" lay-verify="required">
+                                                    <option value="1">管理子帐</option>
+                                                    <option value="2">查看子帐</option>
+                                                    <option value="3">占成子帐</option>
+                                                    <option value="4">全权子帐</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">帐号</label>
+                                            <div class="layui-input-inline" style="width: 50px;">
+                                                <script type="text/html" template>
+                                                    <input name="first_name" type="text" class="layui-input" lay-verify="required" maxlength="3" placeholder="字头" value="{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}" />
+                                                    <div class="layui-form-mid layui-input layui-hide" name="first_name" style="text-align: center;">{{ layui.sessionData(layui.setter.tableName)[layui.setter.request.userInfoName].first_name }}</div>
+                                                </script>
+                                            </div>
+                                            <div class="layui-input-inline">
+                                                <input name="account" type="text" class="layui-input" lay-verify="required" />
+                                            </div>
+                                            <div class="layui-input-inline" style="width: auto;margin-right: 0;">
+                                                <button class="layui-btn layui-btn-primary" lay-filter="check">检验</button>
+                                                <button class="layui-btn layui-btn-primary" lay-filter="generator">生成</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-block">
+                                                <input name="password" type="password" class="layui-input" lay-verify="required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">备注</label>
+                                            <div class="layui-input-block">
+                                                <input name="remark" type="text" class="layui-input" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-row layui-form-item">
+                                        <div class="layui-col-sm6">
+                                            <label class="layui-form-label">权限</label>
+                                            <div class="layui-input-block">
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="新增用户" value="1" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="管理用户" value="2" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="账目报表" value="3" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="游戏管理" value="4" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="用户列表" value="5" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="占成设置" value="6" />
+                                                <input name="permission" type="checkbox" lay-skin="primary" title="风控列表" value="7" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <input name="user_type" type="hidden" value="1" />
+                                            <input name="account_type" type="hidden" value="2" />
+                                            <button class="layui-btn" lay-submit lay-filter="addnew">提 交</button>
+                                            <button type="reset" class="layui-btn layui-btn-primary">重 置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use(['element', 'form', 'view'], function() {
+        var $ = layui.$,
+            form = layui.form,
+            view = layui.view,
+            setter = layui.setter,
+            element = layui.element;
+        var userInfo = layui.sessionData(setter.tableName)[setter.request.userInfoName] || {};
+        if (userInfo.user_level >= 1) {
+            //$("select[name=currency_code]").addClass("layui-hide");
+            $("input[name=first_name]").addClass("layui-hide");
+            $("div[name=first_name]").removeClass("layui-hide");
+        }
+
+        form.on("submit(addnew)", function(data) {
+            var url = data.field.user_type == "1" ? "agent/register" : "user/register";
+            var thisForm = $(this).parents("form"),
+                checkValues = [];
+            if ($(thisForm).find("input[name=gameAgent]").length > 0) {
+                $(thisForm).find("input[name=gameAgent]:checked").each(function(index, item) {
+                    checkValues.push($(item).val());
+                });
+                data.field.gameAgent = checkValues.toString();
+            } else if ($(thisForm).find("input[name=gameMember]").length > 0) {
+                $(thisForm).find("input[name=gameMember]:checked").each(function(index, item) {
+                    checkValues.push($(item).val());
+                });
+                data.field.gameMember = checkValues.toString();
+            } else {
+                $(thisForm).find("input[name=permission]:checked").each(function(index, item) {
+                    checkValues.push($(item).val());
+                });
+                data.field.permission = checkValues.toString();
+            }
+            data.field.parent_id = data.field.account_type=="2" ? userInfo.parent_id : userInfo.id;
+            data.field.master_id = data.field.account_type=="2" ? userInfo.id : 0;
+            data.field.currency_code = userInfo.currency_code;
+            data.field.first_name = userInfo.first_name;
+            data.field.maxlevel = userInfo.max_level;
+
+            console.log(data.field);return false;
+            view.req({
+                url: url,
+                data: data.field,
+                done: function(response) {
+                    layer.alert(response.msg, function(index) {
+                        if(response.code == 10000) {
+                            $(thisForm)[0].reset();
+                        }
+                        layer.close(index);
+                    });
+                }
+            });
+            return false;
+        });
+        form.on("checkbox(allAgent)", function(data) {
+            $("input[name=gameAgent]").prop("checked", data.elem.checked);
+            form.render('checkbox');
+        });
+        form.on("checkbox(allMember)", function(data) {
+            $("input[name=gameMember]").prop("checked", data.elem.checked);
+            form.render('checkbox');
+        });
+
+        $("form").on("click", "[lay-filter=generator]", function() {
+            var thisForm = $(this).parents("form"),
+                thisAccount = $(thisForm).find("input[name=account]"),
+                firstName = $(thisForm).find("input[name=first_name]").val();
+            view.req({
+                url: "user/generator",
+                data: {first_name: firstName},
+                done: function(response) {
+                    $(thisAccount).val(response.data);
+                }
+            });
+            return false;
+        }).on("click", "[lay-filter=check]", function() {
+            var thisForm = $(this).parents("form"),
+                account = $(thisForm).find("input[name=account]").val(),
+                firstName = $(thisForm).find("input[name=first_name]").val();
+            view.req({
+                url: "user/check",
+                data: {first_name: firstName, account: account},
+                done: function(response) {
+                    layer.alert(response.msg);
+                }
+            });
+            return false;
+        });
+    });
+</script>

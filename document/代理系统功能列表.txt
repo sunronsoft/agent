@@ -1,0 +1,32 @@
++-- 用户管理
+        新增加用户，+-- 新增代理、新增子帐 -- AgentController --- register
+                    +-- 新增会员           -- UserController  --- register
+        用户列表                           -- AgentController --- list
+                                           -- UserController  --- list
++-- 账目报表
+        输赢报表
+        未完成交易
+        点成报表
+        作废/删除注单
++-- 风控                                   -- AgentController --- risk
++-- 转账                                   -- TransController --- list
+                                           -- TransController --- transfer
++-- 查看日志
+        设定                               -- LogginController -- setting
+        状态                               -- LogginController -- status
+        信用额度                           -- LogginController -- credit
+        登入                               -- LogginController -- loginlog
++-- 系统消息
+        一般消息                           -- MessageController - normal
+        特殊消息                           -- MessageController - special
+                                           -- MessageController - view
+                                           
+当前登录的代理：
+    基本资料                               -- AgentController --- detail                        
+    安全设置                               -- AgentController --- security
+    
+系统要求：
+1、单点登录，如果有多人同时登录同一账户，就把上一个登录人踢出
+2、每隔一段时间（通常是一个月）要求当前登录的代理修改安全码
+3、游戏以插件方式加载，每个游戏就是一个插件，每个游戏的会员注册、下单等分别对应不同的游戏公司
+

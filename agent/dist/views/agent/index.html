@@ -1,0 +1,100 @@
+<title>代理明细</title>
+
+<div class="layui-card layadmin-header">
+    <div class="layui-breadcrumb" lay-filter="breadcrumb">
+        <a lay-href="">主页</a>
+        <a><cite>代理明细</cite></a>
+    </div>
+</div>
+
+<div class="layui-fluid" id="LAY-agent">
+    <div class="layui-card">
+        <div class="layui-card-header">代理</div>
+        <div class="layui-card-body">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width:60px;padding-left:0px;">用户名</label>
+                        <div class="layui-input-inline" style="width:120px;">
+                            <input type="text" class="layui-input" id="userName" placeHolder="用户名或名/姓" />
+                        </div>
+                        <label class="layui-form-label" style="width:40px;padding-left:0px;">状态</label>
+                        <div class="layui-input-inline" style="width:100px;">
+                            <select id="state" name="state">
+                                <option value="0">全部</option>
+                                <option value="1">开启</option>
+                                <option value="2">暂停</option>
+                                <option value="3">关闭</option>
+                                <option value="4">禁用</option>
+                            </select>
+                        </div>
+                        <label class="layui-form-label" style="width:60px;padding-left:0px;">双倍佣金</label>
+                        <div class="layui-input-inline" style="width:100px;">
+                            <select id="state" name="state">
+                                <option value="0">全部</option>
+                                <option value="1">允许</option>
+                                <option value="2">禁止</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">提 交</button>
+                            <button id="printBtn" class="layui-btn layui-btn-primary">打 印</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="layui-table" lay-data="{url:'json/proxyDetail.json', page: true, limit: 5, limits:[5, 10, 15, 20]}">
+                <thead>
+                    <tr>
+                        <th lay-data="{checkbox:true, width: '3%'}" rowspan="2"></th>
+                        <th lay-data="{field:'userName', width: '7%'}" rowspan="2">用户名</th>
+                        <th lay-data="{field:'state', width: '5%'}" rowspan="2">状态</th>
+                        <th lay-data="{field:'update', width: '5%'}" rowspan="2">修改</th>
+                        <th lay-data="{field:'member', width: '5%'}" rowspan="2">会员</th>
+                        <th lay-data="{field:'doubleCommission', width: '8%'}" rowspan="2">双倍佣金</th>
+                        <th lay-data="{field:'firstName', width: '5%'}" rowspan="2">名</th>
+                        <th lay-data="{field:'lastName', width: '5%'}" rowspan="2">姓</th>
+                        <th lay-data="{width: '39%',  align:'center'}" colspan="7">佣金</th>
+                        <th lay-data="{field:'addDate', width: '9%'}" rowspan="2">新增日期</th>
+                        <th lay-data="{field:'lastLoginIp', width: '9%'}" rowspan="2">最后登入IP</th>
+                    </tr>
+                    <tr>
+                        <th lay-data="{field:'groupA'}">A组</th>
+                        <th lay-data="{field:'groupB'}">B组</th>
+                        <th lay-data="{field:'groupC'}">C组</th>
+                        <th lay-data="{field:'groupD'}">D组</th>
+                        <th lay-data="{field:'oneXtwo'}">1X2</th>
+                        <th lay-data="{field:'other'}">其他</th>
+                        <th lay-data="{field:'numberGame', width:'100'}">数字游戏</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //JavaScript代码区域
+    layui.use(['element', 'jquery', 'table'], function() {
+        var $ = layui.$,
+            table = layui.table,
+            element = layui.element;
+
+        $('#printBtn').on('click', function() {
+            window.print();
+        });
+    });
+
+    layui.use('laydate', function() {
+        var laydate = layui.laydate;
+
+        //执行laydate实例
+        laydate.render({
+            elem: '#startTime' //指定元素
+        });
+        laydate.render({
+            elem: '#endTime' //指定元素
+        });
+    });
+</script>

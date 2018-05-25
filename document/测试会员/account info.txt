@@ -1,0 +1,10 @@
+后台:
+登录地址：http://ap.kkk616.com
+代理登录名: SH8888
+密码: SH8888qwe
+
+API：
+url：http://api.kkk616.com/kkapi
+代理商账号: 1041
+des key: D36shzOb
+md5 key: 2JwsvDF0kFUAyYXTLTDZ

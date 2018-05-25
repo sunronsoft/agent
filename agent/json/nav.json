@@ -1,0 +1,97 @@
+{
+    "code": 10000,
+    "msg": "",
+    "data": [
+        {
+            "name": "index",
+            "title": "首页",
+            "icon": "layui-icon-home"
+        }, {
+            "name": "user",
+            "title": "用户管理",
+            "icon": "layui-icon-user",
+            "list": [
+                {
+                    "name": "register",
+                    "title": "新增用户",
+                    "jump": "user/register"
+                }, {
+                    "name": "list",
+                    "title": "用户列表",
+                    "jump": "user/list"
+                }
+            ]
+        }, {
+            "name": "report",
+            "title": "账目报表",
+            "icon": "layui-icon-baobiao",
+            "list": [
+                {
+                    "name": "profit",
+                    "title": "输赢报表",
+                    "jump": "report/profit"
+                }, {
+                    "name": "incomplete",
+                    "title": "未完成交易",
+                    "jump": "report/incomplete"
+                }, {
+                    "name": "accounting",
+                    "title": "占成报表",
+                    "jump": "report/accounting"
+                }, {
+                    "name": "cancellation",
+                    "title": "作废/删除注单",
+                    "jump": "report/cancellation"
+                }
+            ]
+        }, {
+            "name": "risk",
+            "title": "风控",
+            "icon": "layui-icon-tree",
+            "jump": "risk/index"
+        }, {
+            "name": "transfer",
+            "title": "转账",
+            "icon": "layui-icon-refresh-2",
+            "jump": "transfer/index"
+        }, {
+            "name": "log",
+            "title": "查看日志",
+            "icon": "layui-icon-riqi",
+            "list": [
+                {
+                    "name": "setting",
+                    "title": "设定",
+                    "jump": "log/#tab=setting"
+                }, {
+                    "name": "status",
+                    "title": "状态",
+                    "jump": "log/#tab=status"
+                }, {
+                    "name": "credit",
+                    "title": "信用额度",
+                    "jump": "log/#tab=credit"
+                }, {
+                    "name": "login",
+                    "title": "登入",
+                    "jump": "log/#tab=login"
+                }
+            ]
+        }, {
+            "name": "message",
+            "title": "系统消息",
+            "icon": "layui-icon-duihua",
+            "list": [
+                {
+                    "name": "base",
+                    "title": "一般消息",
+                    "jump": "message/#tab=base"
+                }, {
+                    "name": "security",
+                    "title": "特殊消息",
+                    "jump": "message/#tab=special"
+                }
+            ]
+        }
+    ]
+}
